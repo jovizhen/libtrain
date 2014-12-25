@@ -1,0 +1,39 @@
+<div class="container col-md-10 col-md-offset-1 col-sm-8 col-xs-12" ng-controller="bookSearchController">
+<form class="form-inline" role="form">
+	<div class="form-group">
+		<input type="text" class="form-control" placeholder="Enter Book Title/Author name/Publisher name" ng-model="keyWord" />
+		<select class="form-control" ng-model="filterAuthor" ng-options="author as author.authorName for author in authorOptions">
+  			 <option value="">Select Author</option>
+		</select> 
+
+		<select class="form-control" ng-model="filterPub" ng-options="pub as pub.name for pub in pubOptions">
+  			 <option value="">Select Pub</option>
+		</select>
+
+		<select class="form-control" ng-model="filterGenre" ng-options="genre as genre.genreName for genre in genreOptions">
+  			 <option value="">Select Genre</option>
+		</select>
+	</div>
+	<input type="button" value="Search" class="btn btn-primary" ng-click="searchBook()"/>
+</form><br>
+
+<table class="table table-hover">
+			<tr>
+				<th>Book Name</th>
+				<th>Publisher</th>
+				<th>Authors</th>
+				<th>Genres</th>
+				<th>Detail</th>
+			</tr>
+
+			<tr ng-repeat="book in searchResult">
+				<td>{{book.title}}</td>
+				<td>{{book.publisher.name}}</td>
+				<td>{{book.authorString}}</td>
+				<td>{{book.genreString}}</td>
+				<td><button class="btn btn-warning"
+						ng-click="deleteAuthor(author.authorId)">Delete</button></td>
+			</tr>
+
+		</table>
+</div>

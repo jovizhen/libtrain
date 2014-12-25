@@ -1,0 +1,76 @@
+<div class="container col-md-10 col-md-offset-1 col-sm-8 col-xs-12"" ng-controller="bookController">
+	<!-- Modal -->
+	<div class="modal fade" id="updateAuthorModal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Update Book</h4>
+				</div>
+				<form name="updateBookForm" action="updateBookAction"
+					method="post">
+					<div class="modal-body">
+						<p>You are about to update the Book:<mark>{{oldTitle}}</mark></p>
+						<input type="hidden" class="form-control" ng-model="bookId"/> 
+						<input
+							type="text" placeholder="Enter Book's New Name" class="form-control" ng-model="titleUpdate"/>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary"
+							ng-click="updateBook()">Save changes</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+	<h3>Add Book</h3>
+	<form name="addBookForm"  class="form-inline" method="post">
+	 <div class="form-group">
+		<input type="text" placeholder="Enter Book's Name" class="form-control" required name="title" ng-model="title"> 
+			<h4>Authors:</h4>
+			<select ng-model="selectedAuthors" multiple>
+        		<option ng-repeat="author in authorOptions" value="{{author.id}}">{{author.authorName}}</option>
+      		</select>
+      		<h4> Genres:</h4>
+      		<select ng-model="selectedGenres" multiple>
+        		<option ng-repeat="genre in genreOptions" value="{{genre.id}}">{{genre.genreName}}</option>
+      		</select>
+
+			<select class="form-control" ng-model="selectedPub" ng-options="pub as pub.name for pub in pubOptions">
+				<option value="">select Publisher</option>
+			</select> <input type="button" value="Add Book" class="btn btn-primary" ng-click="addBook()"/>
+	</div>
+	</form><br>
+
+
+		<table class="table table-hover">
+			<tr>
+				<th>Book Name</th>
+				<th>Publisher</th>
+				<th>Authors</th>
+				<th>Genres</th>
+				<th>Update</th>
+				<th>Delete</th>
+			</tr>
+
+			<tr ng-repeat="book in books">
+				<td>{{book.title}}</td>
+				<td>{{book.publisher.name}}</td>
+				<td>{{book.authorString}}</td>
+				<td>{{book.genreString}}</td>
+				<td><button class="btn btn-info"
+						ng-click="showUpdateModal(author.authorId, author.authorName)">Update</button></td>
+				<td><button class="btn btn-warning"
+						ng-click="deleteAuthor(author.authorId)">Delete</button></td>
+			</tr>
+
+		</table>
+
+</div>

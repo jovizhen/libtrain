@@ -1,0 +1,36 @@
+<%@page import="com.gcit.training.library.entity.Publisher"%>
+<%@page import="com.gcit.training.library.entity.Author"%>
+<%@page import="java.util.List"%>
+<%
+	List<Author> authors = (List<Author>) request.getAttribute("authors");
+	List<Publisher> publishers = (List<Publisher>) request.getAttribute("publishers");
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add Book</title>
+</head>
+<body>
+
+<h3>Add Book</h3>
+<form action="addBookAction" method="post">
+	<input type="text" placeholder="Enter Title" name="title"/><br/>
+	<select name="author">
+		<option>--Select Author--</option>
+		<%for(Author a : authors) { %>
+			<option value="<%=a.getAuthorId()%>"><%=a.getAuthorName()%></option>
+		<% } %>
+	</select><br/>
+	<select name="publisher">
+		<option>--Select Publisher--</option>
+		<%for(Publisher p : publishers) { %>
+			<option value="<%=p.getPublisherId()%>"><%=p.getName()%></option>
+		<% } %>
+	</select><br/>
+	<input type="submit"/>
+</form>
+
+</body>
+</html>

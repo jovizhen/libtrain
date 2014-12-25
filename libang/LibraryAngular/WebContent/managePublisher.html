@@ -1,0 +1,83 @@
+<div class="container col-md-10 col-md-offset-1 col-sm-8 col-xs-12" ng-controller="publisherCtrl">
+<div class="modal fade" id="updatePublisherModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Update Publisher</h4>
+			</div>
+			<div class="modal-body">
+				<form action="admin?function=UPDATE_PUBLISHER" method="post" role="form">
+					<div class="form-group">
+						<label for="publisherName">Update name: <mark>
+								<span >{{oldPubName}}</span>
+							</mark>
+						</label> <input type="hidden" ng-model="pubId" /> <input type="text" class="form-control"
+							placeholder="Enter new publisher Name" id="publisherName" ng-model="pubNameUpdate"/>
+					</div>
+					<div class="form-group">
+						<label for="publisherAddress">Update address: <mark>
+								<span >{{oldPubAddress}}</span>
+							</mark>
+						</label> <input type="text" class="form-control" placeholder="Enter new publisher address" ng-model="pubAddressUpdate"/>
+					</div>
+					<div class="form-group">
+						<label for="publisherPhone">Update phone: <mark>
+								<span>{{oldPubPhone}}</span>
+							</mark>
+						</label> <input type="text" class="form-control" placeholder="Enter new publisher phone" ng-model="pubPhoneUpdate"/>
+					</div>
+
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" ng-click="updatePublisher();">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+
+
+
+	<h3>Add Publisher</h3>
+		<form name= "addPubForm" class="form-inline" method="post">
+			<div class="form-group">
+			<label for="publisherName">Name: </label>
+				<input type="text" class="form-control" placeholder="Enter Publisher Name" ng-model="pubName"/>
+			<label for="publisherAddress">Address: </label>
+				<input type="text" class="form-control" placeholder="Enter Publisher Address" ng-model="pubAddress"/>
+			<label for="publisherPhone">Phone: </label>
+				<input type="text" class="form-control" placeholder="Enter Publisher Phone" ng_model="pubPhone"/>
+			<input type="button" value= "Add Pub" class="btn btn-primary" ng-click="addPublisher()"/>
+			</div>
+		</form>
+	<span id="resultMsg"></span><br />
+	<form action="admin" method="POST" name=publisherListForm>
+		<table class="table table-hover">
+			<tr>
+				<th>Publisher Name</th>
+				<th>Publisher Address</th>
+				<th>Publisher Phone</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+			<tr ng-repeat="pub in publishers">
+			<td>{{pub.name}}</td>
+			<td>{{pub.address}}</td>
+			<td>{{pub.phone}}</td>
+			<td><button type="button" class="btn btn-info"
+							ng-click="showPublisherModal(pub.id, pub.name, pub.address, pub.phone);"
+						>Update</button></td>
+					<td><button type="button" class="btn btn-warning" ng-click="deletePublisher(pub.id);">Delete
+						</button></td>
+			</tr>
+		</table>
+	</form>
+</div>
+</div>

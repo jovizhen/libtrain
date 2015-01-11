@@ -38,7 +38,7 @@ public class SpringConfig
 	}
 
 	@Bean(name = "authorQueue")
-	public ActiveMQQueue quthorQueue()
+	public ActiveMQQueue authorQueue()
 	{
 		ActiveMQQueue authorQueue = new ActiveMQQueue("author.queue");
 		return authorQueue;

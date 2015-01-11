@@ -230,7 +230,7 @@ public class HomeController
 					}
 				}
 
-				jmsTemplate.convertAndSend(bookQueue, authorList);
+				jmsTemplate.convertAndSend(authorQueue, authorList);
 
 				return "You successfully uploaded file="
 						+ file.getOriginalFilename();

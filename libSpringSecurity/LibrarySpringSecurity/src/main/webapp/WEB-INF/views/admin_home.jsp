@@ -6,9 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Admin Home</title>
+<%@ include file="menu.jsp"%>
 </head>
 <body>
-Welcome to admin home!
+<div class="container">
+<h2>Welcome to admin Page!</h2>
 <a href="<c:url value="/j_spring_security_logout" />" > Logout</a></h2>  
+</div>
 </body>
 </html>
